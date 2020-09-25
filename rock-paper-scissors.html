@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Page Title</title>
+  <meta charset="UTF-8"/>
+</head>
+<body>
+  <script>
+      let choices = ["Rock", "Paper", "Scissors"];
+
+
+      // Returns a random choice of "Rock", "Paper", or "Scissors"
+      function computerPlay() {
+          return choices[(Math.floor(Math.random() * 3))];
+      }
+
+      // Plays one round of Rock Paper Scissors. Returns string that states the result.
+      function playRound(playerSelection, computerSelection) {
+          if(playerSelection ===  computerSelection) {
+              return "Draw! You made the same choice.";
+          }
+          
+          switch (playerSelection) {
+              case "Rock":
+                if (computerSelection === "Paper") return "You Lose! Paper " + 
+                                                         "beats Rock.";
+                else return "You Win! Rock beats Scissors.";
+                break;
+              case "Paper":
+                if (computerSelection === "Scissors") return "You Lose! Scissors " +
+                                                             "beats Paper.";
+                else return "You Win! Paper beats Rock.";
+                break;
+              case "Scissors":
+                if (computerSelection === "Rock") return "You Lose! Rock " +
+                                                         "beats scissors.";
+                else return "You Win! Scissors beats Paper.";
+                break;
+              default:
+                break;
+          }
+      }
+
+      // Plays a 5 round game of Rock Paper Scissors. Winner is reported at
+      // at the end.
+      function game() {
+          let userScore     = 0;
+          let computerScore = 0;
+          
+          let result;
+          let choice;
+          let i;
+          for (i = 0; i < 5; i++) {
+              choice = capitalize(prompt("Rock, Paper, or Scissors?"));
+              console.log(choice);
+              result = playRound(choice, computerPlay());
+              if (result.search("Win") != -1) ++userScore;
+              else ++computerScore;
+              console.log(result);
+          }
+
+          if (userScore > computerScore) console.log("Congratulations! You Won!");
+          else if (userScore == computerScore) console.log("It's a Draw!");
+          else console.log("Sorry, You Lost...");
+      }
+
+      // Capitalizes the first letter of a string
+      function capitalize(str) {
+        str = str.toLowerCase();
+        return (str.substring(0,1).toUpperCase() + str.substring(1));
+      }
+  </script>
+</body>
