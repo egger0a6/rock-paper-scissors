@@ -51,17 +51,27 @@
           let choice;
           let i;
           for (i = 0; i < 5; i++) {
-              choice = capitalize(prompt("Rock, Paper, or Scissors?"));
-              console.log(choice);
+              while(true) {
+                choice = capitalize(prompt("Rock, Paper, or Scissors?"));
+                if (choices.includes(choice)) break;
+              }
               result = playRound(choice, computerPlay());
               if (result.search("Win") != -1) ++userScore;
-              else ++computerScore;
+              else if(result.search("Lose") != -1) ++computerScore;
               console.log(result);
           }
 
-          if (userScore > computerScore) console.log("Congratulations! You Won!");
-          else if (userScore == computerScore) console.log("It's a Draw!");
-          else console.log("Sorry, You Lost...");
+          if (userScore > computerScore) console.log("Congratulations! You Won! " +
+                                                     `Score: ${userScore}-${computerScore}, ` +
+                                                     `${5 - (userScore + computerScore)} ` +
+                                                     "Ties");
+          else if (userScore == computerScore) console.log("It's a Draw! " +
+                                                           `Score: ${userScore}-${computerScore}, ` +
+                                                           `${5 - (userScore + computerScore)} ` +
+                                                           "Ties");
+          else console.log("Sorry, You Lost..." +
+                           `Score: ${userScore}-${computerScore}, ` + 
+                           `${5 - (userScore + computerScore)} Ties`);
       }
 
       // Capitalizes the first letter of a string
