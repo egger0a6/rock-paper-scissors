@@ -1,0 +1,63 @@
+html {
+    background: url(images/background.jpg);
+    background-size: cover;
+}
+
+.viewport {
+    width: 100%;
+    min-height: 100%;
+    margin: 0 auto;
+    color: #e7d749;
+    font-family: arial,sans-serif;
+}
+
+.score {
+    margin-top: 100px;
+    font-size: 3em;
+    font-weight: bold;
+    text-align: center;
+    white-space: pre;
+}
+
+.gameButtons {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 300px;
+    margin: auto;
+}
+
+.gameButtons button {
+    color: #222;
+    background-color: #1e90ff;
+    width: 200px;
+    height: 100px;
+    font-size: large;
+    border-radius: 6px;
+    text-align: center;
+    border: 2px solid #0074e4;
+    margin: 50px;
+}
+
+.resetButton {
+    display: flex;
+    justify-content: center;
+}
+
+.resetButton button {
+    color: #2b2b2b;
+    background-color: #ea4e5a;
+    width: 200px;
+    height: 100px;
+    font-size: large;
+    border-radius: 6px;
+    text-align: center;
+    border: 2px solid #df1a2a;
+}
+
+#roundText {
+    margin-top: 100px;
+    font-size: 3em;
+    font-weight: bold;
+    text-align: center;
+}

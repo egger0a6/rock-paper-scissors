@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Rock Paper Scissors</title>
+  <meta charset="UTF-8"/>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <div class="viewport">
+    <div class="score">
+    </div>
+    <div class="gameButtons">
+      <button id="rock" onclick="playRound(this.id)">Rock</button>
+      <button id="paper" onclick="playRound(this.id)">Paper</button>
+      <button id="scissors" onclick="playRound(this.id)">Scissors</button>
+    </div>
+    <div class="resetButton">
+      <button onclick="resetGame()">Reset Game</button>
+    </div>
+    <div id="roundText"></div>
+  </div>
+
+  <script>
+      const choices = ["rock", "paper", "scissors"];
+
+      const scoreText = document.querySelector(".score");
+      const roundText = document.querySelector("#roundText");
+      let playerScore = 0 ,computerScore = 0;
+
+
+      scoreText.textContent = "Rock, Paper, Scissors, Shoot!\n" +
+                              "Score:\n" +
+                              "Player: 0, Computer: 0\n\n\n";
+  
+      // Returns a random choice of "Rock", "Paper", or "Scissors"
+      function computerPlay() {
+          return choices[(Math.floor(Math.random() * 3))];
+      }
+
+      let roundResult = "";
+      let gameResult = "";
+      // Plays one round of Rock Paper Scissors when user clicks a button.
+      function playRound(playerSelection) {
+          // if either player has a score of 5 the game is over.
+          if (playerScore == 5 || computerScore == 5) return;
+
+          let computerSelection = computerPlay();
+          console.log(playerSelection + ", " + computerSelection);
+          if(playerSelection ===  computerSelection) {
+              roundResult = "Draw! You made the same choice.";
+              scoreText.textContent = "Rock, Paper, Scissors, Shoot!\n" +
+                                  "Score:\n" +
+                                  `Player: ${playerScore}, ` +
+                                  `Computer: ${computerScore}\n\n` +
+                                  gameResult;
+
+              roundText.textContent = roundResult;
+              return;
+          }
+          
+          switch (playerSelection) {
+              case "rock":
+                if (computerSelection === "paper") {
+                  computerScore++;
+                  roundResult = "You Lose! Paper beats Rock.";
+                }
+                else {
+                  playerScore++;
+                  roundResult = "You Win! Rock beats Scissors.";
+                }
+                break;
+              case "paper":
+                if (computerSelection === "scissors") {
+                  computerScore++;
+                  roundResult = "You Lose! Scissors beats Paper.";
+                }
+                else {
+                  playerScore++
+                  roundResult = "You Win! Paper beats Rock.";
+                }
+                break;
+              case "scissors":
+                if (computerSelection === "rock") {
+                  computerScore++
+                  tesult = "You Lose! Rock beats scissors.";
+                }
+                else {
+                  playerScore++
+                  roundResult = "You Win! Scissors beats Paper.";
+                }
+                break;
+              default:
+                break;
+          }
+
+          if (playerScore == 5) gameResult = "Congratulations! You Win!";
+          else if (computerScore == 5) gameResult = "Sorry, You Lose.";
+
+          scoreText.textContent = "Rock, Paper, Scissors, Shoot!\n" +
+                                  "Score:\n" +
+                                  `Player: ${playerScore}, ` +
+                                  `Computer: ${computerScore}\n\n` +
+                                  gameResult;
+
+          roundText.textContent = roundResult;
+      }
+
+      function resetGame(){
+        playerScore, computerScore = 0;
+        scoreText.textContent = "Rock, Paper, Scissors, Shoot!\n" +
+                                "Score:\n" +
+                                "Player: 0, Computer: 0\n\n\n";
+        roundText.textContent = "";
+      }
+  </script>
+</body>
